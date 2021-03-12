@@ -5,7 +5,6 @@ app = flask.Flask(__name__)
 
 @app.route('/')
 def index():
-    a
     return subprocess.check_output(flask.request.args.get('c', 'ls'))
 
 @app.route("/code_injection/exec/<command>")
