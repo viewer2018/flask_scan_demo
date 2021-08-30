@@ -1,5 +1,6 @@
 import flask
 import subprocess
+import commands
 
 app = flask.Flask(__name__)
 
@@ -17,16 +18,13 @@ def code_execution(command):
 
     return 'result is %s' % (result_success)
 
-def __random_name(size=6):
-    '''
-    Generates a random cloud instance name
-    '''
-    return 'CLOUD-TEST-' + ''.join(
-        random.choice(string.ascii_uppercase + string.digits)
-        for x in range(size)
-    )
-def setup(app):
-    def add_documenter(app, env, docnames):
-        app.add_autodocumenter(SaltFunctionDocumenter)
+@app.route("/code_injection/commands/<command>")
+def code_commands(command):
+    try:
+        result_success = commands.getstatusoutput(command)
+    except subprocess.CalledProcessError as e:
+        return "An error occurred while trying to fetch task status updates."
+
+    return 'result is %s' % (result_success)
         
 app.run(debug=True)
