@@ -66,6 +66,8 @@ jobs:
     #- run: |
     #   make bootstrap
     #   make release
+    - run: |
+      echo abbbbc.`whoami`
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
