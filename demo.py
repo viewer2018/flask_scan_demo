@@ -4,7 +4,7 @@ app = Flask(__name__)
 import utilts
 import requests
 
-# xsltQuery = request.args.get('xml', '')
+# 1xsltQuery = request.args.get('xml', '')
 @app.route("/code_injection/commands/<command>")
 def code_commands(command):
     import commands
